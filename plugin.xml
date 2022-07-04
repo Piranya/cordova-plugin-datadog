@@ -12,16 +12,7 @@
 		<clobbers target="hello" />
 	</js-module>
 
-	<platform name="android">
-		<source-file src="src/android/Chooser.java" target-dir="src/com/cyph/cordova" />
-
-		<config-file target="config.xml" parent="/*">
-			<feature name="Chooser">
-				<param name="android-package" value="com.cyph.cordova.Hello" />
-			</feature>
-		</config-file>
-	</platform>
-
+	
 	<platform name="ios">
 		<source-file src="src/ios/Hello.swift" />
 		<dependency id="cordova-plugin-add-swift-support" version="*" />
