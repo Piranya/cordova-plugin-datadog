@@ -16,7 +16,7 @@
 	"cordova": {
 		"id": "cordova-plugin-hello",
 		"platforms": [
-			"android",
+			
 			"ios"
 		]
 	},
