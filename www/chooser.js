@@ -86,7 +86,7 @@ function getFileInternal (
 				}
 			},
 			reject,
-			'Chooser',
+			'Hello',
 			'getFile',
 			[
 				(typeof accept === 'string' ?
