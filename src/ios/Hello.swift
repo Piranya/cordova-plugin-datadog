@@ -2,9 +2,9 @@ import UIKit
 import MobileCoreServices
 import Foundation
 
-
+@objc(Hello)
 class Hello : CDVPlugin{
-@objc(Hello:)
+@objc(sayHello:)
 func sayHello(command : CDVInvokedUrlCommand) //this method will be called web app
 {
 let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: “Hello there”)
