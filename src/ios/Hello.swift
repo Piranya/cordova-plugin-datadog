@@ -9,12 +9,7 @@ class Hello : CDVPlugin {
 
 	@objc(sayHello:)
 	func sayHello (command: CDVInvokedUrlCommand) {//this method will be called web app
-		self.commandCallback = command.callbackId
-
-		let accept = command.arguments.first as! String
-		
-		let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: “Hello there”)
-		self.commandDelegate.send(result, callbackId: command.callbackId)
+		return "hello world from swift plugin"
 	}
 	
 }
