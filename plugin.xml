@@ -8,7 +8,9 @@
 	<name>Hello</name>
 	<author></author>
 
-	
+	<js-module src="www/hello.js" name="Hello">
+		<clobbers target="hello" />
+	</js-module>
 	
 	<platform name="ios">
 		<source-file src="src/ios/Hello.swift" />
