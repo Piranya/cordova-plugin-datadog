@@ -3,14 +3,16 @@ import MobileCoreServices
 import Foundation
 
 
-@objc(Hello)
-class Hello : CDVPlugin {
-	var commandCallback: String?
+@objc(Hello) class DemoPlugin : CDVPlugin{
+// MARK: Properties
+var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+@objc(sayHello:) func sayHello(_ command: CDVInvokedUrlCommand) {
+var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
 
-	@objc(sayHello:)
-	func sayHello (command: CDVInvokedUrlCommand) -> String {
-		return "hello world from swift plugin"
-	}
-	
+pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: command.arguments[0])
+
+}
+self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+}
 }
 
