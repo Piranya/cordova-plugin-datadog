@@ -1,7 +1,3 @@
-import UIKit
-import MobileCoreServices
-import Foundation
-
 @objc(Hello) class Hello : CDVPlugin {
     func sayHello(command: CDVInvokedUrlCommand) {
         var pluginResult = CDVPluginResult(
