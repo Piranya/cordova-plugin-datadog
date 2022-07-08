@@ -3,7 +3,7 @@ import MobileCoreServices
 import Foundation
 
 
-@objc(Hello) class DemoPlugin : CDVPlugin{
+@objc(Hello) class Hello : CDVPlugin{
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
     @objc(sayHello:) func sayHello(command: CDVInvokedUrlCommand) {
         self.commandCallback = command.callbackId
