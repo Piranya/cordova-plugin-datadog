@@ -23,7 +23,7 @@
             </pods>
         </podspec>
         
-       		<source-file src="src/ios/Hello.swift" />
+       		<source-file src="src/ios/Datadog.swift" />
 
 		<config-file target="config.xml" parent="/*">
 			<feature name="Hello">
