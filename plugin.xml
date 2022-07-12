@@ -8,8 +8,8 @@
 	<name>Hello</name>
 	<author></author>
 
-	<js-module src="www/hello.js" name="Hello">
-		<clobbers target="hello" />
+	<js-module src="www/datadog.js" name="datadog">
+		<clobbers target="datadog" />
 	</js-module>
 	
 	<platform name="ios">
@@ -26,9 +26,10 @@
        		<source-file src="src/ios/Datadog.swift" />
 
 		<config-file target="config.xml" parent="/*">
-			<feature name="Hello">
-				<param name="ios-package" value="Hello" />
-			</feature>
+			 <feature name="Datadog">
+                		<param name="ios-package" value="Datadog"/>
+				<param name="onload" value="true"/>
+         		 </feature>
 		</config-file>
 	</platform>
 </plugin>
