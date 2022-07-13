@@ -52,7 +52,7 @@ import DatadogCrashReporting
             }
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
             let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Initialized!")
-            self.commandDelegate.send(result, callbackId: command.callbackId)
+            self.commandDelegate.send!(result, callbackId: command.callbackId)
         }else{
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
             let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
