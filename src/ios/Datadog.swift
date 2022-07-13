@@ -49,10 +49,24 @@ import DatadogCrashReporting
                 .trackBackgroundEvents()
                 .build()
             )
+            Datadog.verbosityLevel = .debug
             Global.rum = RUMMonitor.initialize()
             if self.wkSessionId.compare(" ") != .orderedSame {
                 Global.rum.addAttribute(forKey: "wk_UniqueIDForSession", value: wkSessionId)
             }
+            
+            let logger = Logger.builder
+            .sendNetworkInfo(true)
+            .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
+            .build()
+            
+            logger.debug("A debug message.")
+logger.info("Some relevant information?")
+logger.notice("Have you noticed?")
+logger.warn("An important warning…")
+logger.error("An error was met!")
+logger.critical("Something critical happened!")
+            
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
              result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Initialized!")
             self.commandDelegate!.send(result, callbackId: command.callbackId)
