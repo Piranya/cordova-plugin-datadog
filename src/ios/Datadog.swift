@@ -16,7 +16,7 @@ import DatadogCrashReporting
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
     
     @objc(Init:)func Init(command : CDVInvokedUrlCommand){
-         var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+         var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         if(!isInitialized){
             let clientToken = command.argument(at: 0) as! String
             let enviourment = command.argument(at: 1) as! String
@@ -62,7 +62,7 @@ import DatadogCrashReporting
         }
     }
     @objc(setCustomFieldSessionId:)func setCustomFieldSessionId(command : CDVInvokedUrlCommand){
-         var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+         var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         wkSessionId = command.argument(at: 0) as! String
         if isInitialized {
             if self.wkSessionId.compare(" ") != .orderedSame {
@@ -74,14 +74,14 @@ import DatadogCrashReporting
         self.commandDelegate!.send(result, callbackId: command.callbackId)
     }
     @objc(getSessionId:)func getSessionId(command : CDVInvokedUrlCommand){
-         var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+         var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         let uuid = UUID().uuidString
          result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: uuid)
         self.commandDelegate!.send(result, callbackId: command.callbackId)
     }
 
     @objc(setTrackingConsent:)func setTrackingConsent(command : CDVInvokedUrlCommand){
-         var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+         var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         let trackingConsentInt = command.argument(at: 0) as! Int
         var trackingConsent:TrackingConsent
         switch trackingConsentInt {
