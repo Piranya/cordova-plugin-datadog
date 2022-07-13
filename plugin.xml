@@ -5,7 +5,7 @@
 	id="cordova-plugin-hello" 
 	version="1.3.1"
 >	
-	<name>Hello</name>
+	<name>Datadog</name>
 	<author></author>
 
 	<js-module src="www/datadog.js" name="datadog">
