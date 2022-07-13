@@ -1,20 +1,20 @@
 {
-	"name": "cordova-plugin-hello",
+	"name": "cordova-plugin-datadog",
 	"version": "1.3.2",
-	"description": "Cordova hello plugin",
+	"description": "Cordova datadog plugin",
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/cyph/cordova-plugin-hello.git"
+		"url": "git+https://github.com/cyph/cordova-plugin-datadog.git"
 	},
 	"keywords": [
-		"hello",
+		"datadog",
 		"ios"
 	],
-	"author": "test",
+	"author": "Nick",
 	"license": "Apache-2.0",
 	"cordova": {
-		"id": "cordova-plugin-hello",
+		"id": "cordova-plugin-datadog",
 		"platforms": [
 			
 			"ios"
