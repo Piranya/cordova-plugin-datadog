@@ -42,7 +42,8 @@ import DatadogCrashReporting
                     rumApplicationID: appID,
                     clientToken: clientToken,
                     environment: enviourment
-                )
+                )        
+                .set(serviceName: "SI NEW")
                 .trackUIKitRUMViews()
                 .enableCrashReporting(using: DDCrashReportingPlugin())
                 .trackBackgroundEvents()
