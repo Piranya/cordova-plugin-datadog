@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/cyph/cordova-plugin-datadog.git"
+		"url": "git+https://github.com/Piranya/cordova-plugin-datadog.git"
 	},
 	"keywords": [
 		"datadog",
