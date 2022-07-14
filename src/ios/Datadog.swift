@@ -2,8 +2,7 @@ import Foundation
 import Datadog
 import DatadogCrashReporting
 
-@objc(Datadog) class DatadogCrash: CDVPlugin{
-    
+@objc(Datadog) class DatadogCrash: CDVPlugin{  
     var wkSessionId:String = " "
     var isInitialized:Bool = false
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
@@ -47,15 +46,9 @@ import DatadogCrashReporting
             if self.wkSessionId.compare(" ") != .orderedSame {
                 Global.rum.addAttribute(forKey: "wk_UniqueIDForSession", value: wkSessionId)
             }
-            
-         
-
-            
-            //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
              result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Initialized!")
             self.commandDelegate!.send(result, callbackId: command.callbackId)
         }else{
-            //let result = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
              result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
             self.commandDelegate!.send(result, callbackId: command.callbackId)
         }
@@ -126,6 +119,7 @@ import DatadogCrashReporting
             break;    
             
         default:
+            logger.debug("Default debug message")
             break;
         }
            
