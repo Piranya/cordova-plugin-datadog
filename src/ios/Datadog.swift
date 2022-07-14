@@ -1,8 +1,16 @@
+//
+//  Datadog.swift
+//  test
+//
+//  Created by Luis Bouça on 04/10/2021.
+//
+
 import Foundation
 import Datadog
 import DatadogCrashReporting
 
-@objc(Datadog) class DatadogCrash: CDVPlugin{  
+@objc(Datadog) class DatadogCrash: CDVPlugin{
+    
     var wkSessionId:String = " "
     var isInitialized:Bool = false
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
@@ -46,9 +54,24 @@ import DatadogCrashReporting
             if self.wkSessionId.compare(" ") != .orderedSame {
                 Global.rum.addAttribute(forKey: "wk_UniqueIDForSession", value: wkSessionId)
             }
+            
+            let logger = Logger.builder
+            .sendNetworkInfo(true)
+            .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
+            .build()
+            
+            logger.debug("A debug message.")
+logger.info("Some relevant information?")
+logger.notice("Have you noticed?")
+logger.warn("An important warning…")
+logger.error("An error was met!")
+logger.critical("Something critical happened!")
+            
+            //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
              result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Initialized!")
             self.commandDelegate!.send(result, callbackId: command.callbackId)
         }else{
+            //let result = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
              result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
             self.commandDelegate!.send(result, callbackId: command.callbackId)
         }
@@ -91,41 +114,4 @@ import DatadogCrashReporting
          result = CDVPluginResult(status: CDVCommandStatus_OK)
         self.commandDelegate!.send(result, callbackId: command.callbackId)
     }
-    
-     @objc(logger:)func logger(command : CDVInvokedUrlCommand){
-           let logger = Logger.builder
-            .sendNetworkInfo(true)
-            .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
-            .build()
-         
-         let type = command.argument(at: 0) as! String
-         let message = command.argument(at: 1) as! String
-         
-        switch type {
-        case "debug":
-            logger.debug(message)
-            break;
-        case "notice":
-            logger.notice(message)
-            break;
-         case "warn":
-            logger.warn(message)
-            break;
-         case "notice":
-            logger.notice(message)
-            break;  
-         case "critical":
-            logger.critical(message)
-            break;    
-            
-        default:
-            logger.debug("Default debug message")
-            break;
-        }
-           
-       
-            
-        var result = CDVPluginResult(status: CDVCommandStatus_OK)
-        self.commandDelegate!.send(result, callbackId: command.callbackId)
-
 }
