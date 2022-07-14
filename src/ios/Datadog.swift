@@ -1,8 +1,8 @@
 //
 //  Datadog.swift
-//  test
+//  
 //
-//  Created by Luis Bouça on 04/10/2021.
+//  Created by 
 //
 
 import Foundation
@@ -85,7 +85,7 @@ import DatadogCrashReporting
         self.commandDelegate!.send(result, callbackId: command.callbackId)
     }
     
-    @objc(logloggerMessageger:)func loggerMessage(command : CDVInvokedUrlCommand){
+    @objc(loggerMessage:)func loggerMessage(command : CDVInvokedUrlCommand){
          var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         
          let logType = command.argument(at: 0) as! String
