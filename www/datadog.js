@@ -4,6 +4,10 @@ exports.init = function (success, error,clientToken,enviourment,appID,trackingCo
     exec(success, error, 'Datadog', 'Init', [clientToken,enviourment,appID,trackingConsentInt]);
 };
 
+exports.logger = function (success, error,type,message) {
+    exec(success, error, 'Datadog', 'logger', [type,message]);
+};
+
 exports.getSessionId = function (success, error) {
     exec(success, error, 'Datadog', 'getSessionId',[]);
 };
