@@ -100,6 +100,10 @@ import DatadogCrashReporting
     }
     
      @objc(logger:)func logger(command : CDVInvokedUrlCommand){
+           let logger = Logger.builder
+            .sendNetworkInfo(true)
+            .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
+            .build()
          
          let type = command.argument(at: 0) as! String
          let message = command.argument(at: 1) as! String
@@ -125,10 +129,7 @@ import DatadogCrashReporting
             break;
         }
            
-         let logger = Logger.builder
-            .sendNetworkInfo(true)
-            .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
-            .build()
+       
             
         var result = CDVPluginResult(status: CDVCommandStatus_OK)
         self.commandDelegate!.send(result, callbackId: command.callbackId)
