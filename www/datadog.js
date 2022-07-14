@@ -5,7 +5,7 @@ exports.init = function (success, error,clientToken,enviourment,appID,trackingCo
 };
 
 exports.logger = function (success, error,type,message) {
-    exec(success, error, 'Datadog', 'logger', [type,message]);
+    exec(success, error, 'Datadog', 'loggerMessage', [type,message]);
 };
 
 exports.getSessionId = function (success, error) {
