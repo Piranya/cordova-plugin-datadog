@@ -60,12 +60,7 @@ import DatadogCrashReporting
             .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
             .build()
             
-            logger.debug("A debug message.")
-logger.info("Some relevant information?")
-logger.notice("Have you noticed?")
-logger.warn("An important warning…")
-logger.error("An error was met!")
-logger.critical("Something critical happened!")
+
             
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
              result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Initialized!")
@@ -114,4 +109,34 @@ logger.critical("Something critical happened!")
          result = CDVPluginResult(status: CDVCommandStatus_OK)
         self.commandDelegate!.send(result, callbackId: command.callbackId)
     }
+    
+     @objc(logger:)func logger(command : CDVInvokedUrlCommand){
+         
+         let type = command.argument(at: 0) as! String
+         let message = command.argument(at: 1) as! String
+         
+        switch type {
+        case "debug":
+            logger.debug(message)
+            break;
+        case "notice":
+            logger.notice(message)
+            break;
+         case "warn":
+            logger.warn(message)
+            break;
+         case "notice":
+            logger.notice(message)
+            break;  
+         case "critical":
+            logger.critical(message)
+            break;    
+            
+        default:
+            break;
+        }
+
+        var result = CDVPluginResult(status: CDVCommandStatus_OK)
+        self.commandDelegate!.send(result, callbackId: command.callbackId)
+
 }
