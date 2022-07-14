@@ -48,11 +48,7 @@ import DatadogCrashReporting
                 Global.rum.addAttribute(forKey: "wk_UniqueIDForSession", value: wkSessionId)
             }
             
-            let logger = Logger.builder
-            .sendNetworkInfo(true)
-            .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
-            .build()
-            
+         
 
             
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
@@ -128,7 +124,12 @@ import DatadogCrashReporting
         default:
             break;
         }
-
+           
+         let logger = Logger.builder
+            .sendNetworkInfo(true)
+            .printLogsToConsole(true, usingFormat: .shortWith(prefix: "[iOS App] "))
+            .build()
+            
         var result = CDVPluginResult(status: CDVCommandStatus_OK)
         self.commandDelegate!.send(result, callbackId: command.callbackId)
 
