@@ -1,10 +1,3 @@
-//
-//  Datadog.swift
-//  test
-//
-//  Created by Luis Bouça on 04/10/2021.
-//
-
 import Foundation
 import Datadog
 import DatadogCrashReporting
