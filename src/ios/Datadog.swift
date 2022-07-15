@@ -45,7 +45,6 @@ import DatadogCrashReporting
                 )        
                 .set(serviceName: "SI NEW")
                 .trackUIKitRUMViews()
-               
                 .enableCrashReporting(using: DDCrashReportingPlugin())
                 .trackBackgroundEvents()
                 .build()
