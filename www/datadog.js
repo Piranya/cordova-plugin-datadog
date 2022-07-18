@@ -19,7 +19,3 @@ exports.setCustomFieldSessionId = function (success, error,browserSessionId) {
 exports.setTrackingConsent = function (success, error,trackingConsentInt) {
     exec(success, error, 'Datadog', 'setTrackingConsent',[trackingConsentInt]);
 };
-
-exports.setUserName = function (success, error,userName) {
-    exec(success, error, 'Datadog', 'setUserName',[userName]);
-};
