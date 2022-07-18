@@ -45,6 +45,8 @@ import DatadogCrashReporting
                 )        
                 .set(serviceName: "SI NEW")
                 .trackUIKitRUMViews()
+                .trackUIKitRUMActions()
+                .trackURLSession()
                 .enableCrashReporting(using: DDCrashReportingPlugin())
                 .trackBackgroundEvents()
                 .build()
@@ -55,6 +57,11 @@ import DatadogCrashReporting
                 Global.rum.addAttribute(forKey: "wk_UniqueIDForSession", value: wkSessionId)
             }
             
+            let session = URLSession(
+                   configuration: .default,
+                   delegate: DDURLSessionDelegate(),
+                    delegateQueue: nil
+                )
           
             
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
