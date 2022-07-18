@@ -38,6 +38,8 @@ import DatadogCrashReporting
                 )        
                 .set(serviceName: "SI NEW")
                 .trackUIKitRUMViews()
+                .trackUIKitRUMActions()
+                .trackURLSession()
                 .enableCrashReporting(using: DDCrashReportingPlugin())
                 .build()
             )
