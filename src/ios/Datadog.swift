@@ -48,7 +48,7 @@ import DatadogCrashReporting
                 //.trackUIKitRUMActions()
                 //.trackURLSession()
                 .enableCrashReporting(using: DDCrashReportingPlugin())
-                .trackBackgroundEvents()
+                //.trackBackgroundEvents()
                 .build()
             )
             Datadog.verbosityLevel = .debug
@@ -58,12 +58,7 @@ import DatadogCrashReporting
             if self.wkSessionId.compare(" ") != .orderedSame {
                 Global.rum.addAttribute(forKey: "wk_UniqueIDForSession", value: wkSessionId)
             }
-            
-            let session = URLSession(
-                   configuration: .default,
-                   delegate: DDURLSessionDelegate(),
-                    delegateQueue: nil
-                )
+          
           
             
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
