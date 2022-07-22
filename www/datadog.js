@@ -4,6 +4,11 @@ exports.init = function (success, error,clientToken,enviourment,appID,trackingCo
     exec(success, error, 'Datadog', 'Init', [clientToken,enviourment,appID,trackingConsentInt]);
 };
 
+exports.InitTrack = function (success, error,clientToken,enviourment,appID,trackingConsentInt) {
+    exec(success, error, 'Datadog', 'InitTrack', [clientToken,enviourment,appID,trackingConsentInt]);
+};
+
+
 exports.logger = function (success, error,type,message) {
     exec(success, error, 'Datadog', 'loggerMessage', [type,message]);
 };

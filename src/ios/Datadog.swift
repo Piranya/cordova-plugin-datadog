@@ -62,6 +62,67 @@ import DatadogCrashReporting
             self.commandDelegate!.send(result, callbackId: command.callbackId)
         }
     }
+    
+    @objc(InitTrack:)func InitTrack(command : CDVInvokedUrlCommand){
+         var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
+        if(!isInitialized){
+            let clientToken = command.argument(at: 0) as! String
+            let enviourment = command.argument(at: 1) as! String
+            let appID = command.argument(at: 2) as! String
+            let trackingConsentInt = command.argument(at: 3) as! Int
+            var trackingConsent:TrackingConsent
+            switch trackingConsentInt {
+            case 0:
+                trackingConsent = .notGranted
+                break;
+            case 1:
+                trackingConsent = .granted
+                break;
+            default:
+                trackingConsent = .pending
+                break;
+            }
+            
+            let session = URLSession(configuration: .default, delegate: DDURLSessionDelegate(), delegateQueue: nil)
+
+            Datadog.initialize(
+                appContext: .init(),
+                trackingConsent: trackingConsent,
+                configuration: Datadog.Configuration
+                .builderUsing(
+                    rumApplicationID: appID,
+                    clientToken: clientToken,
+                    environment: enviourment
+                )        
+                .set(serviceName: "SI NEW")
+                .trackUIKitRUMViews()
+                .trackUIKitRUMActions()
+                .trackURLSession()
+                .trackBackgroundEvents()
+                .enableCrashReporting(using: DDCrashReportingPlugin())
+                .build()
+            )
+            Datadog.verbosityLevel = .debug
+            Global.rum = RUMMonitor.initialize()
+
+            
+            if self.wkSessionId.compare(" ") != .orderedSame {
+                Global.rum.addAttribute(forKey: "wk_UniqueIDForSession", value: wkSessionId)
+            }
+          
+          
+            
+            //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
+             result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Initialized!")
+            self.commandDelegate!.send(result, callbackId: command.callbackId)
+        }else{
+            //let result = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
+             result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Already Initialized!")
+            self.commandDelegate!.send(result, callbackId: command.callbackId)
+        }
+    }
+    
+    
     @objc(setCustomFieldSessionId:)func setCustomFieldSessionId(command : CDVInvokedUrlCommand){
          var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         wkSessionId = command.argument(at: 0) as! String
