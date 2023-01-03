@@ -12,9 +12,10 @@ import DatadogCrashReporting
          var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         if(!isInitialized){
             let clientToken = command.argument(at: 0) as! String
-            let enviourment = command.argument(at: 1) as! String
+            let environment = command.argument(at: 1) as! String
             let appID = command.argument(at: 2) as! String
             let trackingConsentInt = command.argument(at: 3) as! Int
+            let serviceName = command.argument(at: 4) as! String
             var trackingConsent:TrackingConsent
             switch trackingConsentInt {
             case 0:
@@ -34,9 +35,9 @@ import DatadogCrashReporting
                 .builderUsing(
                     rumApplicationID: appID,
                     clientToken: clientToken,
-                    environment: enviourment
+                    environment: environment
                 )        
-                .set(serviceName: "si_mobile")
+                .set(serviceName: serviceName)
                 .trackUIKitRUMViews()
                 .trackUIKitRUMActions()
                 .trackURLSession()
@@ -67,9 +68,10 @@ import DatadogCrashReporting
          var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
         if(!isInitialized){
             let clientToken = command.argument(at: 0) as! String
-            let enviourment = command.argument(at: 1) as! String
+            let environment = command.argument(at: 1) as! String
             let appID = command.argument(at: 2) as! String
             let trackingConsentInt = command.argument(at: 3) as! Int
+            let serviceName = command.argument(at: 4) as! String
             var trackingConsent:TrackingConsent
             switch trackingConsentInt {
             case 0:
@@ -92,9 +94,9 @@ import DatadogCrashReporting
                 .builderUsing(
                     rumApplicationID: appID,
                     clientToken: clientToken,
-                    environment: enviourment
+                    environment: environment
                 )        
-                .set(serviceName: "si_mobile")
+                .set(serviceName: serviceName)
                 .trackUIKitRUMViews()
                 .trackUIKitRUMActions()
                 .trackURLSession()
