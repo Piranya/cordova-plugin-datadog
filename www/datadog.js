@@ -1,11 +1,11 @@
 var exec = require('cordova/exec');
 
-exports.init = function (success, error,clientToken,enviourment,appID,trackingConsentInt) {
-    exec(success, error, 'Datadog', 'Init', [clientToken,enviourment,appID,trackingConsentInt]);
+exports.init = function (success, error,clientToken,environment,appID,trackingConsentInt,serviceName) {
+    exec(success, error, 'Datadog', 'Init', [clientToken,environment,appID,trackingConsentInt,serviceName]);
 };
 
-exports.InitTrack = function (success, error,clientToken,enviourment,appID,trackingConsentInt) {
-    exec(success, error, 'Datadog', 'InitTrack', [clientToken,enviourment,appID,trackingConsentInt]);
+exports.InitTrack = function (success, error,clientToken,environment,appID,trackingConsentInt,serviceName) {
+    exec(success, error, 'Datadog', 'InitTrack', [clientToken,environment,appID,trackingConsentInt,serviceName]);
 };
 
 
