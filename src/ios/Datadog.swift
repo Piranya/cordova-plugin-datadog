@@ -36,7 +36,7 @@ import DatadogCrashReporting
                     clientToken: clientToken,
                     environment: enviourment
                 )        
-                .set(serviceName: "SI NEW")
+                .set(serviceName: "si_mobile")
                 .trackUIKitRUMViews()
                 .trackUIKitRUMActions()
                 .trackURLSession()
@@ -94,7 +94,7 @@ import DatadogCrashReporting
                     clientToken: clientToken,
                     environment: enviourment
                 )        
-                .set(serviceName: "SI NEW")
+                .set(serviceName: "si_mobile")
                 .trackUIKitRUMViews()
                 .trackUIKitRUMActions()
                 .trackURLSession()
