@@ -1,4 +1,0 @@
-
-exports.setUserName = function (success, error,userName) {
-    exec(success, error, 'Datadog', 'setUserName',[userName]);
-};
