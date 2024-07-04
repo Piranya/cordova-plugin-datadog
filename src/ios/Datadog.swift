@@ -11,18 +11,20 @@ var wkSessionId:String = " "
     var isInitialized:Bool = false
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
     
-    @objc(Init:)func Init(command : CDVInvokedUrlCommand){
-       
-    }
     
     @objc(InitTrack:)func InitTrack(command : CDVInvokedUrlCommand){
          var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
-        if(!isInitialized){
+        if(!isInitialized)
+        {
             let clientToken = command.argument(at: 0) as! String
             let environment = command.argument(at: 1) as! String
             let appID = command.argument(at: 2) as! String
             let trackingConsentInt = command.argument(at: 3) as! Int
             let serviceName = command.argument(at: 4) as! String
+            // var sessionReplayRate = command.argument(at: 5) as! Int
+            let sessionId = command.argument(at: 5) as! String
+            let userName = command.argument(at: 6) as! String
+            
             var trackingConsent:TrackingConsent
             switch trackingConsentInt {
             case 0:
@@ -49,32 +51,41 @@ Datadog.initialize(
   trackingConsent: trackingConsent
 )
 
- SessionReplay.enable(
+
+
+RUM.enable(
+    with: RUM.Configuration(
+        applicationID: appID,
+        uiKitViewsPredicate: DefaultUIKitRUMViewsPredicate(),
+        uiKitActionsPredicate: DefaultUIKitRUMActionsPredicate()
+    )
+)
+
+// if (sessionReplayRate<50){
+//     sessionReplayRate  = 50
+// }
+SessionReplay.enable(
        with: SessionReplay.Configuration(
-           replaySampleRate: 50
+           replaySampleRate: 100
        )
    )
+   
+// Datadog.setUserInfo(name: userName) 
+// Datadog.setUserInfo(id: sessionId)
+
+
 Logs.enable()
    
 Datadog.verbosityLevel = .debug
 
    let logger = Logger.create(
 	with: Logger.Configuration(
-		name: "<Test logger name>",
+		name: serviceName,
 		networkInfoEnabled: true,
 		remoteLogThreshold: .info,
 		consoleLogFormat: .shortWith(prefix: "[iOS App] ")
 	)
     )
-
-// logger.info("Test message")
-// logger.debug("A debug message.")
-// logger.info("Some relevant information?")
-// logger.notice("Have you noticed?")
-// logger.warn("An important warning…")
-// logger.error("An error was met!")
-// logger.critical("Something critical happened!")
-            
             //let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
              result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Initialized!")
             self.commandDelegate!.send(result, callbackId: command.callbackId)
@@ -86,30 +97,28 @@ Datadog.verbosityLevel = .debug
     }
     
     
-    @objc(setCustomFieldSessionId:)func setCustomFieldSessionId(command : CDVInvokedUrlCommand){
-           }
-    
-
-    @objc(getSessionId:)func getSessionId(command : CDVInvokedUrlCommand){
-      
+    @objc(setSessionId:)func getSessionId(command : CDVInvokedUrlCommand){
+    //    Datadog.setUserInfo(id: command.argument(at: 0) as! String)
     }
     
     @objc(loggerMessage:)func loggerMessage(command : CDVInvokedUrlCommand){
-        
-    }
-
-    @objc(setTrackingConsent:)func setTrackingConsent(command : CDVInvokedUrlCommand){
-      
+        // logger.info("Test message")
+        // logger.debug("A debug message.")
+        // logger.info("Some relevant information?")
+        // logger.notice("Have you noticed?")
+        // logger.warn("An important warning…")
+        // logger.error("An error was met!")
+        // logger.critical("Something critical happened!")
     }
     
     
     @objc(setUserName:)func setUserName(command : CDVInvokedUrlCommand){
-        
+        // Datadog.setUserInfo(name: command.argument(at: 0) as! String)
     }
     
     
     // @objc(setCustomFieldSessionId:)func setCustomFieldSessionId(command : CDVInvokedUrlCommand){
-    //      var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
+        //      var result = CDVPluginResult(status: CDVCommandStatus_ERROR)
     //     wkSessionId = command.argument(at: 0) as! String
     //     if isInitialized {
     //         if self.wkSessionId.compare(" ") != .orderedSame {
